@@ -1,3 +1,4 @@
+// here host is the base url for our backend api we can change it to our production url when we deploy the backend and frontend
 // const host = "https://expense-tracker-app-knl1.onrender.com";
 const host = "http://localhost:8000";
 export const setAvatarAPI = `${host}/api/auth/setAvatar`;
