@@ -22,12 +22,7 @@ connectDB();
 app.use(express.json());
 
 // 🔥 OPEN CORS (for deployment - no restriction)
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
+aapp.use(cors())
 
 app.use(helmet());
 app.use(morgan("dev"));
