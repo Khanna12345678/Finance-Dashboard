@@ -24,11 +24,13 @@ connectDB();
 
 app.use(cors({
   origin: "https://magical-pithivier-f8a984.netlify.app",
-  credentials: true,
-  // methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
 
+// 🔥 VERY IMPORTANT (preflight fix)
+app.options("*", cors());
 
 // ✅ Middlewares
 app.use(express.json());
