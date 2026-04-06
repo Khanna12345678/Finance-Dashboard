@@ -19,8 +19,15 @@ connectDB();
 
 
 // 🔥 ✅ CORS FIX (sabse upar hona chahiye)
-app.use(cors());
-app.options("*", cors()); // preflight handle
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+// ✅ Handle preflight requests
+app.options("*", cors());
 
 
 // ✅ Middlewares
