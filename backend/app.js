@@ -7,7 +7,6 @@ import morgan from "morgan";
 import transactionRoutes from "./Routers/Transactions.js";
 import userRoutes from "./Routers/userRouter.js";
 
-// ✅ Load env
 dotenv.config();
 
 const app = express();
@@ -18,23 +17,31 @@ const port = process.env.PORT || 5000;
 // ✅ Connect DB
 connectDB();
 
+
+// 🔥 ✅ CORS FIX (sabse upar hona chahiye)
+app.use(cors());
+app.options("*", cors()); // preflight handle
+
+
 // ✅ Middlewares
 app.use(express.json());
 
-// 🔥 OPEN CORS (for deployment - no restriction)
-app.use(cors())
+// ⚠️ Helmet (temporarily optional, baad me enable kar lena)
+// app.use(helmet());
 
-app.use(helmet());
 app.use(morgan("dev"));
+
 
 // ✅ Routes
 app.use("/api/v1", transactionRoutes);
 app.use("/api/auth", userRoutes);
 
+
 // ✅ Test route
 app.get("/", (req, res) => {
   res.send("Server is running 🚀");
 });
+
 
 // ✅ Start server
 app.listen(port, () => {
