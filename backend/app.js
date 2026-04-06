@@ -18,19 +18,10 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 
-// // 🔥 ✅ CORS FIX (sabse upar hona chahiye)
-// app.use(cors());
-// app.options("https://magical-pithivier-f8a984.netlify.app", cors()); // preflight handle
+// 🔥 ✅ CORS FIX (sabse upar hona chahiye)
+app.use(cors());
+app.options("*", cors()); // preflight handle
 
-app.use(cors({
-  origin: "https://magical-pithivier-f8a984.netlify.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
-
-// 🔥 VERY IMPORTANT (preflight fix)
-app.options("*", cors());
 
 // ✅ Middlewares
 app.use(express.json());
